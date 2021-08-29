@@ -19,11 +19,9 @@ def get_bitcoin_usd_exchange_rate(*args, **kwargs):
     querystring = {"function": "CURRENCY_EXCHANGE_RATE", "from_currency": "BTC",
                    "to_currency": "USD", "apikey": alpha_vantage_api_key}
 
-    # print("---------------------Request-------------------------", datetime.now())
     response = request("GET", url, headers=headers, params=querystring).json()
-    # print("---------------------Response-------------------------", datetime.now())
 
-    if not response:
+    if 'Error Message' in response:
         return False
 
     exchange_rate = response['Realtime Currency Exchange Rate']['5. Exchange Rate']
@@ -35,4 +33,3 @@ def get_bitcoin_usd_exchange_rate(*args, **kwargs):
         return False
 
     return True
-

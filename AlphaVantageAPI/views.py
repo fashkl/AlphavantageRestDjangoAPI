@@ -33,8 +33,8 @@ class BitcoinToUSDView(View):
     def post(self, request):
         response = get_bitcoin_usd_exchange_rate()
         if response:
-            data = {"message": "Success, force requesting of the price from alphaVantage API"}
+            data = {"message": "Success! Record created"}
         else:
-            data = {"message": "Sorry! force requesting of the price from alphaVantage API"}
+            data = {"message": "Sorry Error!, check alphaVantage API or Auth header and key"}
 
         return JsonResponse(data, status=201)
